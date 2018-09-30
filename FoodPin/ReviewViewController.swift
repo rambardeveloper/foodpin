@@ -10,7 +10,7 @@ import UIKit
 
 class ReviewViewController: UIViewController {
 
-    var restaurant:Restaurant?
+    var restaurant:RestaurantMO?
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var containerView: UIView!
@@ -23,7 +23,7 @@ class ReviewViewController: UIViewController {
         let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = view.bounds
-        containerImage.image = UIImage(named: (self.restaurant?.image)!)
+        containerImage.image = UIImage(data: restaurant?.image as! Data)
         backgroundImageView.addSubview(blurEffectView)
 //        containerView.transform = CGAffineTransform.init(scaleX: 0.0, y: 0.0)
         containerView.transform = CGAffineTransform(translationX: 0, y: -1000)

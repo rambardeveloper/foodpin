@@ -15,6 +15,7 @@ class RestaurantTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var imageCell: UIImageView!
+    @IBOutlet weak var phoneCell: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

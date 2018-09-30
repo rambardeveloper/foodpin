@@ -39,7 +39,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="3Zw-CB-ADy">
-                                                    <rect key="frame" x="70" y="19.5" width="273" height="55.5"/>
+                                                    <rect key="frame" x="70" y="10.5" width="273" height="73.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ3-h6-ReX">
                                                             <rect key="frame" x="0.0" y="0.0" width="47" height="20.5"/>
@@ -53,8 +53,14 @@
                                                             <color key="textColor" red="0.2314006979695431" green="0.2314006979695431" blue="0.2314006979695431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Myq-vQ-hXX">
+                                                            <rect key="frame" x="0.0" y="39.5" width="41" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heb-LJ-vx2">
-                                                            <rect key="frame" x="0.0" y="39.5" width="29.5" height="16"/>
+                                                            <rect key="frame" x="0.0" y="57.5" width="29.5" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -75,6 +81,7 @@
                                     <outlet property="imageCell" destination="ThR-gz-Yx0" id="p9q-Vf-Nja"/>
                                     <outlet property="locationLabel" destination="pLt-c0-NaP" id="XEb-Ws-Y4b"/>
                                     <outlet property="nameLabel" destination="JZ3-h6-ReX" id="E34-yh-0MJ"/>
+                                    <outlet property="phoneCell" destination="Myq-vQ-hXX" id="zUJ-vk-Qvw"/>
                                     <outlet property="typeLabel" destination="heb-LJ-vx2" id="liy-NU-kun"/>
                                     <segue destination="OK5-aV-ruf" kind="show" identifier="showRestaurantDetail" id="iBq-pB-ywr"/>
                                 </connections>
@@ -152,7 +159,7 @@
                                                     <rect key="frame" x="16" y="31" width="339" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="name"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -216,13 +223,37 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="location"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="72" id="mtj-5o-Aec">
+                                        <rect key="frame" x="0.0" y="466" width="375" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mtj-5o-Aec" id="3jr-d1-GDS">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PHONE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fO-Q8-bvC">
+                                                    <rect key="frame" x="16" y="11" width="59" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contact phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2zP-rn-R2f">
+                                                    <rect key="frame" x="16" y="31" width="339" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="72" id="AsP-v3-V4h">
-                                        <rect key="frame" x="0.0" y="466" width="375" height="72"/>
+                                        <rect key="frame" x="0.0" y="538" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AsP-v3-V4h" id="JGT-Dq-8qh">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
@@ -288,6 +319,7 @@
                         <outlet property="locationField" destination="dAI-L0-7fI" id="xok-0U-zSa"/>
                         <outlet property="nameField" destination="hog-LL-gzN" id="SUP-jQ-ba8"/>
                         <outlet property="noButton" destination="I2G-Lf-U2S" id="8tw-sH-1KP"/>
+                        <outlet property="phoneField" destination="2zP-rn-R2f" id="QHl-ua-m9D"/>
                         <outlet property="photoImageView" destination="Izi-lQ-arS" id="Tp2-Hn-hyy"/>
                         <outlet property="typeField" destination="zfk-kP-tUO" id="wnB-Qh-sRL"/>
                         <outlet property="yesButton" destination="fJ6-OD-xhP" id="LnF-fg-xze"/>

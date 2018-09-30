@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddRestaurantTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -14,10 +15,13 @@ class AddRestaurantTableViewController: UITableViewController, UIImagePickerCont
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var typeField: UITextField!
     @IBOutlet weak var locationField: UITextField!
-    
+    @IBOutlet weak var phoneField:UITextField!
     @IBOutlet weak var yesButton: UIButton!
-    
     @IBOutlet weak var noButton: UIButton!
+
+    
+    var restaurant:RestaurantMO!
+    var isVisited:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,22 +82,40 @@ class AddRestaurantTableViewController: UITableViewController, UIImagePickerCont
         let nameFieldText = self.nameField.text!
         let locationFieldText = self.locationField.text!
         let typeFieldText = self.typeField.text!
-        
+        let phoneFieldText = self.phoneField.text!
         if nameFieldText.isEmpty{
             showAlert(title: "Name field is empty", message: "We can't proceed because name field is empty and this is a required field")
         }else if typeFieldText.isEmpty{
             showAlert(title: "Type field is empty", message: "We can't proceed because type field is empty and this is a required field")
         }else if locationFieldText.isEmpty{
             showAlert(title: "Location field is empty", message: "We can't proceed because location field is empty and this is a required field")
+        }else{
+            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate){
+                restaurant = RestaurantMO(context: appDelegate.persistentContainer.viewContext)
+                restaurant.name = nameFieldText
+                restaurant.type = typeFieldText
+                restaurant.location = locationFieldText
+                restaurant.phone = phoneFieldText
+                restaurant.isVisited = isVisited
+                if let restaurantImage = photoImageView.image{
+                    if let imageData = UIImagePNGRepresentation(restaurantImage){
+                        restaurant.image = NSData(data: imageData) as Data
+                    }
+                }
+                print("Saving data")
+                appDelegate.saveContext()
+            }
         }
         
     }
    
     @IBAction func buttonPressed(_ sender: UIButton) {
         if sender.currentTitle == "YES"{
+            isVisited = true
             self.yesButton.backgroundColor = UIColor.red
             self.noButton.backgroundColor = UIColor.gray
         }else{
+            isVisited = false
             self.noButton.backgroundColor = UIColor.red
             self.yesButton.backgroundColor = UIColor.gray
         }

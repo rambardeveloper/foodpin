@@ -15,17 +15,18 @@ class RestaurantDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     @IBOutlet var restaurantImageView:UIImageView!
     @IBOutlet var mapView:MKMapView!
-//    @IBOutlet weak var nameLabel: UILabel!
-//    @IBOutlet weak var countryLabel: UILabel!
-//    @IBOutlet weak var typeLabel: UILabel!
+    var restaurant:RestaurantMO!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
     
-    var restaurant:Restaurant = Restaurant(name: "", type: "", location: "", phone:"", image: "", isVisited: false)
+   
     
     @IBOutlet var tableView:UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        restaurantImageView.image = UIImage(named: restaurant.image)
+        restaurantImageView.image = UIImage(data: restaurant.image!)
         tableView.backgroundColor = UIColor(red: 10.0/255.0, green: 210.0/255.0, blue: 210.0/255.0, alpha: 0.2)
         tableView.separatorColor = UIColor(red: 10.0/255.0, green: 210.0/255.0, blue: 210.0/255.0, alpha: 0.2)
         
@@ -36,9 +37,9 @@ class RestaurantDetailViewController: UIViewController, UITableViewDelegate, UIT
 
         //Mapa
         let geoCoder = CLGeocoder()
-        print("Location: \(restaurant.location)")
+        print("Location: \(restaurant.location!)")
        
-        geoCoder.geocodeAddressString(restaurant.location, completionHandler: {
+        geoCoder.geocodeAddressString(restaurant.location!, completionHandler: {
                 (placemarks, error) in
                 if error != nil {
                     print("Error: \(error!)")
@@ -103,6 +104,9 @@ class RestaurantDetailViewController: UIViewController, UITableViewDelegate, UIT
                     break
             }
         }
+        if let appDelegate = (UIApplication.shared.delegate as? AppDelegate){
+            appDelegate.saveContext()
+        }
         tableView.reloadData()
     }
     
@@ -134,7 +138,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDelegate, UIT
             cell.valueLabel.text =  restaurant.location
         case 3:
             cell.fieldLabel.text = "Been here"
-            cell.valueLabel.text =  (restaurant.isVisited) ? "Yes, I've been here before. \(restaurant.rating)": "No"
+            cell.valueLabel.text =  (restaurant.isVisited) ? "Yes, I've been here before. \(String(describing: restaurant.rating))": "No"
         case 4:
             cell.fieldLabel.text = "Phone"
             cell.valueLabel.text =  restaurant.phone
